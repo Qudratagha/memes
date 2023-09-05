@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('category');
             $table->string('name');
             $table->string('title');
+            $table->string('video');
             $table->string('description');
             $table->timestamp('dateCreated');
         });

@@ -8,11 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -71,10 +71,33 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
+        <div class="app-content content">
+            <div class="content-overlay"></div>
+            @if(session('message'))
+                <div class="alert alert-success" role="alert">
+                    <i class="fa-solid fa-circle-check alert-link"></i> {{ session('message') }}
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger" role="alert">
+                    <i class="fa-solid fa-circle-xmark alert-link"></i> {{ session('error') }}
+                </div>
+            @endif
+            @if(session('warning'))
+                <div class="alert alert-warning" role="alert">
+                    <i class="fa-solid fa-triangle-exclamation alert-link"></i> {{ session('warning') }}
+                </div>
+            @endif
             @yield('content')
-        </main>
+        </div>
+{{--        <main class="py-4">--}}
+{{--            @yield('content')--}}
+{{--        </main>--}}
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    @yield('script')
 </body>
 </html>
